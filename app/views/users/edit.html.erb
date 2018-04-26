@@ -1,6 +1,9 @@
-<h1>Editing User</h1>
+<h1>Account Settings</h1>
 
 <%= render 'form', user: @user %>
 
-<%= link_to 'Show', @user %> |
-<%= link_to 'Back', users_path %>
+<br>
+
+<div class="actions">
+  <%= link_to 'Back', events_path, class: 'btn btn-primary' %>
+</div>

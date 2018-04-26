@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180405025607) do
+ActiveRecord::Schema.define(version: 20180426105035) do
 
   create_table "attendances", force: :cascade do |t|
     t.integer "user_id"
@@ -32,8 +32,7 @@ ActiveRecord::Schema.define(version: 20180405025607) do
   create_table "user_availabilities", force: :cascade do |t|
     t.integer "user_id"
     t.integer "event_id"
-    t.datetime "start_time"
-    t.datetime "end_time"
+    t.datetime "slot_time"
     t.index ["event_id"], name: "index_user_availabilities_on_event_id"
     t.index ["user_id"], name: "index_user_availabilities_on_user_id"
   end
@@ -42,6 +41,8 @@ ActiveRecord::Schema.define(version: 20180405025607) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name"
+    t.string "email"
+    t.string "password_hash"
   end
 
 end

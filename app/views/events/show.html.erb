@@ -10,6 +10,28 @@
   <%= @event.location %>
 </p>
 
+<% row_count = (@event.end_time.hour - @event.start_time.hour) * 4 %>
+<% col_count = @event.end_time.mday - @event.start_time.mday + 1 %>
+<% row = 0 %>
+<% col = 0 %>
+<% timeslots = [] %>
+
+<div class="container">
+  <% while row <= row_count %>
+    <div class="row">
+      <% while col <= col_count %>
+        <div class="col">
+          <%= slot = DateTime.new(@event.end_time.year, @event.end_time.month, @event.end_time.mday + col, @event.end_time.hour + (row / 4), @event.end_time.minute + (row % 4) %>
+          <div class="actions">
+          </div>
+        </div>
+      <% col_count = col_count + 1 %>
+      <% end %>
+    </div>
+  <% row_count = row_count + 1 %>
+  <% end %>
+</div>
+
 <p>
   <strong>Start time:</strong>
   <%= @event.start_time %>
