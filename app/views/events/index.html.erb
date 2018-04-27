@@ -9,10 +9,9 @@
       <th class="table-dark bg-primary">Location</th>
       <th class="table-dark bg-primary">Start Time</th>
       <th class="table-dark bg-primary">End Time</th>
-      <th class="table-dark bg-primary" colspan="3"></th>
+      <th class="table-dark bg-primary" colspan="4"></th>
     </tr>
   </thead>
-
 
   <tbody>
     <% @events.each do |event| %>
@@ -21,8 +20,9 @@
         <td><%= event.location %></td>
         <td><%= event.start_time %></td>
         <td><%= event.end_time %></td>
-        <td><%= link_to 'Select Availabilities', event %></td>
-        <td><%= link_to 'Edit Event', edit_event_path(event) %></td>
+        <td><%= link_to 'View Availabilities', view_event_path(event) %></td>
+        <td><%= link_to 'Select Availabilities', select_event_path(event) %></td>
+        <td><%= link_to 'Edit Event/Invite People', edit_event_path(event) %></td>
         <td><%= link_to 'Delete Event', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>

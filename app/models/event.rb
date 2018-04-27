@@ -12,6 +12,6 @@ class Event < ApplicationRecord
   private
 
   def start_time_is_before_end_time
-    errors.add(:start_time, "must take place before ending time") if (start_time <=> end_time) == 1
+    errors.add(:start_time, 'must take place before ending time') if (start_time <=> end_time) == 1
   end
 end

@@ -8,33 +8,33 @@ RSpec.describe Event, type: :model do
 
   describe 'validations' do
     it 'is not valid without a title' do
-      user = Event.new(location: 'Some Place', start_time: start, end_time: finish)
-      user.valid?
-      expect(user.errors.messages[:title]).to include("can't be blank")
+      event = Event.new(location: 'Some Place', start_time: start, end_time: finish)
+      event.valid?
+      expect(event.errors.messages[:title]).to include("can't be blank")
     end
 
     it 'is not valid without an location' do
-      user = Event.new(title: 'Event', start_time: start, end_time: finish)
-      user.valid?
-      expect(user.errors.messages[:location]).to include("can't be blank")
+      event = Event.new(title: 'Event', start_time: start, end_time: finish)
+      event.valid?
+      expect(event.errors.messages[:location]).to include("can't be blank")
     end
 
     it 'is not valid without a start time' do
-      user = Event.new(title: 'Event', location: 'Some Place', end_time: finish)
-      user.valid?
-      expect(user.errors.messages[:start_time]).to include("can't be blank")
+      event = Event.new(title: 'Event', location: 'Some Place', end_time: finish)
+      event.valid?
+      expect(event.errors.messages[:start_time]).to include("can't be blank")
     end
 
     it 'is not valid without an end time' do
-      user = Event.new(title: 'Event', location: 'Some Place', start_time: start)
-      user.valid?
-      expect(user.errors.messages[:end_time]).to include("can't be blank")
+      event = Event.new(title: 'Event', location: 'Some Place', start_time: start)
+      event.valid?
+      expect(event.errors.messages[:end_time]).to include("can't be blank")
     end
 
     it "is not valid if start time occurs after end time" do
-      user = Event.new(title: 'Event', location: 'Some Place', start_time: finish, end_time: start)
-      user.valid?
-      expect(user.errors.messages[:start_time]).to include("must take place before ending time")
+      event = Event.new(title: 'Event', location: 'Some Place', start_time: finish, end_time: start)
+      event.valid?
+      expect(event.errors.messages[:start_time]).to include("must take place before ending time")
     end
 
     it 'is valid with correct data' do

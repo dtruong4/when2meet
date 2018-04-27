@@ -16,20 +16,98 @@
     <%= form.text_field :title, id: :event_title, class: 'form-control' %>
   </div>
 
+  <br>
+
   <div class="field">
     <%= form.label :location %>
     <%= form.text_field :location, id: :event_location, class: 'form-control' %>
   </div>
 
-  <div class="field">
-    <%= form.label :start_time %>
-    <%= form.datetime_select :start_time, id: :event_start_time, class: 'form-control' %>
+  <br>
+
+
+  <%= form.label 'Select all your preferred weekdays:' %>
+  <table>
+    <tbody>
+      <tr>
+        <td class="text-center">
+          <div class="field">
+          <%= form.label 'Sunday'%>
+          <br>
+          <%= form.check_box :sunday, id: :event_sunday %>
+        </div>
+        </td>
+        <td class="text-center">
+          <div class="field">
+          <%= form.label 'Monday' %>
+          <br>
+          <%= form.check_box :monday, id: :event_monday %>
+        </div>
+        </td>
+        <td class="text-center">
+          <div class="field">
+          <%= form.label 'Tuesday' %>
+          <br>
+          <%= form.check_box :tuesday, id: :event_tuesday %>
+        </div>
+        </td>
+        <td class="text-center">
+          <div class="field">
+          <%= form.label 'Wednesday' %>
+          <br>
+          <%= form.check_box :wednesday, id: :event_wednesday %>
+        </div>
+        </td>
+        <td class="text-center">
+          <div class="field">
+          <%= form.label 'Thursday' %>
+          <br>
+          <%= form.check_box :thursday, id: :event_thursday %>
+        </div>
+        </td>
+        <td class="text-center">
+          <div class="field">
+          <%= form.label 'Friday' %>
+          <br>
+          <%= form.check_box :friday, id: :event_friday %>
+        </div>
+        </td>
+        <td class="text-center">
+          <div class="field">
+          <%= form.label 'Saturday' %>
+          <br>
+          <%= form.check_box :saturday, id: :event_saturday %>
+        </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <br>
+
+  <%= form.label 'What are your preferred times?' %>
+  <div class="container">
+    <div class="field">
+      <%= form.label 'No earlier than' %>
+      <br>
+      <%= form.time_select :start_time, id: :event_start_time, minute_step: 15, ampm: true %>
+    </div>
+    <br>
+    <div class="field">
+      <%= form.label 'No later than' %>
+      <br>
+      <%= form.time_select :end_time, id: :event_end_time, minute_step: 15, ampm: true %>
+    </div>
   </div>
 
+  <br>
+
   <div class="field">
-    <%= form.label :end_time %>
-    <%= form.datetime_select :end_time, id: :event_end_time, class: 'form-control' %>
+    <%= form.label 'Enter an email to invite the user.' %>
+    <%= form.text_field @email, id: :event_location, class: 'form-control' %>
   </div>
+
+  <br>
 
   <div class="actions">
     <%= form.submit class: 'btn btn-primary' %>

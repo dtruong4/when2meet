@@ -42,7 +42,7 @@ class UsersController < ApplicationController
       if @user == current_user && @user.update(user_params)
         session[:user_id] = @user.id
         format.html { redirect_to edit_user_path(current_user), notice: 'User was successfully updated.' }
-        format.json { render :show, status: :ok, location: @user }
+        format.json { render :edit, status: :ok, location: edit_user_path(current_user) }
       else
         format.html { render :edit }
         format.json { render json: @user.errors, status: :unprocessable_entity }
@@ -58,6 +58,19 @@ class UsersController < ApplicationController
       format.html { redirect_to events_path, notice: 'User was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def add_event
+    if params[:event_id].present?
+      @event = Event.find(params[:event_id])
+      @user.events << @event unless @student.events.include?(@event)
+    end
+    redirect_to events_path
+  end
+
+  def delete_event
+    @user.attendances.find(params[:event_id]).delete
+    redirect_to events_path
   end
 
   private

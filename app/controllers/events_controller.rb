@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :set_event, only: [:show, :edit, :update, :destroy, :select, :view]
 
   # GET /events
   # GET /events.json
@@ -25,14 +25,13 @@ class EventsController < ApplicationController
   # POST /events.json
   def create
     @event = Event.new(event_params)
-
     respond_to do |format|
       if @event.save
+        add_friends
         format.html { redirect_to @event, notice: 'Event was successfully created.' }
         format.json { render :show, status: :created, location: @event }
       else
-        format.html { render :new }
-        format.json { render json: @event.errors, status: :unprocessable_entity }
+        reformat
       end
     end
   end
@@ -61,14 +60,30 @@ class EventsController < ApplicationController
     end
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_event
-      @event = Event.find(params[:id])
-    end
+  def select
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def event_params
-      params.require(:event).permit(:title, :location, :start_time, :end_time)
-    end
+  def view
+  end
+
+  private
+
+  def reformat
+    format.html { render :new }
+    format.json { render json: @event.errors, status: :unprocessable_entity }
+  end
+
+  def add_friends
+    current_user.events << @event
+  end
+
+  # Use callbacks to share common setup or constraints between actions.
+  def set_event
+    @event = Event.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def event_params
+    params.require(:event).permit(:title, :location, :start_time, :end_time, :sunday, :monday, :tuesday, :wednesday, :thursday, :friday, :saturday)
+  end
 end

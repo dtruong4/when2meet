@@ -1,5 +1,13 @@
 <h1>Account Settings</h1>
 
+<p id="notice">
+  <% if notice %>
+    <div class="alert alert-success" role="alert">
+      <%= notice %>
+    </div>
+  <% end %>
+</p>
+
 <%= render 'form', user: @user %>
 
 <br>
